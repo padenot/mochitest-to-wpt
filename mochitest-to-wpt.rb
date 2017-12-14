@@ -32,12 +32,12 @@ source = File.read(ARGV[0])
 script = Nokogiri::HTML(source).css("//script").map { |e| e.content }.join("\n")
 
 # name ?
-script = script.gsub("SimpleTest.waitForExplicitFinish();", "var t = async_test()");
+script = script.gsub("SimpleTest.waitForExplicitFinish()", "var t = async_test()");
 # is load event really required ?
 script = script.gsub(/addLoadEvent\(function\(\) *{\n(.*)}\);/m, '\1')
 script = script.gsub("SimpleTest.finish();", "t.done();")
 script = script.gsub("ok(", "assert_true(")
-script = script.gsub("is(", "assert_equal(")
+script = script.gsub("is(", "assert_equals(")
 script = script.gsub(/ *expectException\(function\(\) *{\n *(.*?)}, DOMException.([A-Z_]*?)\);/m, 'assert_throws("\2", function() {\1});')
 
 cmd = "prettier -"
