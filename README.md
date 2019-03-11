@@ -3,12 +3,12 @@
 Scripts to ease porting Gecko mochitest to web-platform-tests
 
 Deps:
-- sh
-- hg
-- ruby
-  - nokogiri (gem install nokogiri)
-- node
-  - prettier (npm install prettier)
+- `sh`
+- `hg`
+- `ruby`
+  - `nokogiri` (`gem install nokogiri`)
+- `node`
+  - `prettier` (the cli tool) (`npm install prettier`)
 
 
 # Harnesses
@@ -22,7 +22,7 @@ This is be automated a bit more, but for now:
 
 ```sh
 hg cp path/to/old/test.html path/to/new/test.html
-./mochitest-to-wpt.rb > path/to/new/test.html
+./mochitest-to-wpt.rb input_file.html output_file.html
 ./mach wpt --update-manifest path/to/new/test.html
 # this runs the test, adjust the code as need, the conversion is not perfect
 # ...
