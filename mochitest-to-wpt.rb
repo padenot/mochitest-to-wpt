@@ -40,11 +40,11 @@ script = script.gsub("ok(", "assert_true(")
 script = script.gsub("is(", "assert_equals(")
 script = script.gsub(/ *expectException\(function\(\) *{\n *(.*?)}, DOMException.([A-Z_]*?)\);/m, 'assert_throws("\2", function() {\1});')
 
-cmd = "prettier -"
+cmd = "prettier --stdin --parser babel"
 
 STDOUT.sync = true
 
-Open3.popen3("prettier") do |stdin, stdout, stderr, wait_thr|
+Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
   stdin.puts(script)
   stdin.close()
   script = stdout.read
