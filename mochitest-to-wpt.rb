@@ -3,8 +3,13 @@
 require 'nokogiri'
 require 'open3'
 
-source=ARGV[1]
-dest=ARGV[2]
+if ARGV.length != 2
+  STDERR.puts "usage: #{$0} mochitest_file.html wpt_file.html"
+  exit(1)
+end
+
+source=ARGV[0]
+dest=ARGV[1]
 
 WPT_PREAMBLE=<<-HEREDOC
 <!DOCTYPE html>
@@ -52,5 +57,4 @@ end
 
 script = WPT_PREAMBLE + script + WPT_POSTAMBLE
 
-print script
-
+IO.write(dest, script)
