@@ -8,7 +8,7 @@ Deps:
 - `ruby`
   - `nokogiri` (`gem install nokogiri`)
 - `node`
-  - `prettier` (the cli tool) (`npm install prettier`)
+  - `prettier` (the cli tool) (`npm install -g prettier`)
 
 
 # Harnesses
